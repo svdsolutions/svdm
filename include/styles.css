@@ -1,5 +1,39 @@
 body {
+    height: 100vh;
     background-color: black;
+    color: white;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.card{
+    background-color: black;
+    padding: 0px;
+    margin-right: 22px;
+    margin-bottom: 50px;
+    font-size: 14px; /* Default font size for above 430px */
+}
+
+@media only screen and (max-width: 430px) {
+    .card {
+        margin-bottom: 25px;
+        margin-right: 10px;
+        font-size: 12px; /* Font size for 430px and below */
+    }
+}
+
+.card .card-img-top {
+    height: 290px;
+}
+
+@media only screen and (max-width: 430px) {
+    .card .card-img-top {
+        height: 200px;
+    }
+}
+
+.card .card-body{
+    padding: 0px;
+    margin: 6px;
 }
 
 .text-dec{
@@ -12,65 +46,8 @@ body {
     text-decoration: underline; /* Underline on hover */
 }
 
-.cards-cont{
-    align-items: start;
+.textmuted{
+    color: #ccc9c9;
+    font-size: 15px;
 }
 
-.card {
-    background-color: black; /* Set card background to black */
-    color: white; /* Ensure text color is white for visibility */
-    margin-bottom: 20px;
-}
-
-.card-img-top {
-    height: 15rem; /* Set a fixed height for images */
-    object-fit: cover; /* Ensures images cover the area */
-}
-
-.text-card{
-    margin-top: 5px;
-}
-
-.txt-data{
-    color: rgb(177, 177, 177);
-    font-weight: 500;
-}
-
-.d-flex {
-    display: flex;
-    align-items: center; /* Vertically center the items */
-}
-
-.mr-2 {
-    margin-right: 10px; /* Space between text and image */
-}
-
-.text-black {
-    color: black;
-}
-
-.text-red {
-    color: red;
-}
-
-.bg-svdm{
-    background-color: orange;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-    font-weight: 600;
-    font-size: 20px;
-}
-
-.text-orange{
-    background-color: rgb(48, 47, 47);
-    color: orange;
-}
-
-.hero-p{
-    color: rgb(143, 140, 140);
-    margin-top: 20px;
-}
-
-.video-card{
-    align-items: center;
-}
