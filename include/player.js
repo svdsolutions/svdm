@@ -14,6 +14,7 @@ $(function() {
 document.addEventListener("DOMContentLoaded", () => {
     const params = new URLSearchParams(window.location.search);
     const title = params.get('title');
+    const loadingIndicator = document.getElementById('loading');
 
     fetch('include/data.json')
         .then(response => response.json())
@@ -22,48 +23,50 @@ document.addEventListener("DOMContentLoaded", () => {
 
             if (movie) {
                 // Update both cards with movie data
-                const elements = {
-                    'poster-md': movie.poster,
-                    'title-md': movie.title,
-                    'year-md': movie.year,
-                    'cast-md': movie.cast,
-                    'director-md': movie.director,
-                    'poster-sm': movie.poster,
-                    'title-sm': movie.title,
-                    'year-sm': movie.year,
-                    'cast-sm': movie.cast,
-                    'director-sm': movie.director,
-                    'video-frame': movie['player-url'],
-                };
+                document.getElementById('poster').src = movie.poster;
+                document.getElementById('title').textContent = movie.title;
+                document.getElementById('year').textContent = movie.year;
+                document.getElementById('cast').textContent = movie.cast;
+                document.getElementById('director').textContent = movie.director;
+                document.getElementById('download').href = movie['download-url'];
+                document.getElementById('video-frame').src = movie['player-url'];
 
-                for (const id in elements) {
-                    if (document.getElementById(id).src) {
-                        document.getElementById(id).src = elements[id];
-                    } else {
-                        document.getElementById(id).textContent = elements[id];
-                    }
-                }
-
-                // Set download link separately
-                document.getElementById('download-md').href = movie['download-url'];
-                document.getElementById('download-sm').href = movie['download-url'];
+                // Hide loading indicator
+                loadingIndicator.style.display = 'none';
 
                 // Change the URL in the address bar
-                history.pushState({}, '', 'player.html');
+                history.replaceState({}, '', 'player.html');
             } else {
-                console.error('Movie not found');
+                loadingIndicator.innerHTML = '<p class="text-danger">Movie not found. Please try again.</p>';
             }
         })
-        .catch(error => console.error('Error loading data:', error));
-
-    // Prevent new tab openings and popups on the video player
-    const videoFrame = document.getElementById('video-frame');
-    videoFrame.addEventListener('click', (event) => {
-        event.stopPropagation();
-        event.preventDefault();
-        alert('Popups and new tab openings are blocked for this video player.');
-    });
+        .catch(error => {
+            loadingIndicator.innerHTML = '<p class="text-danger">Error loading data. Please try again later.</p>';
+            console.error('Error loading data:', error);
+        });
 });
+
+const iframe = document.getElementById('video-frame');
+
+// This part won't work if the iframe is cross-origin
+iframe.onload = function() {
+    try {
+        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+
+        // Prevent popups for links with target="_blank"
+        iframeDoc.addEventListener('click', function(event) {
+            const target = event.target;
+
+            if (target.tagName === 'A' && target.getAttribute('target') === '_blank') {
+                event.preventDefault();
+                console.log('Popup prevented for:', target.href);
+                // Optionally, handle the link here (e.g., show a message)
+            }
+        });
+    } catch (e) {
+        console.warn('Cross-origin policy restricts access to iframe content.');
+    }
+};
 
 //function
 window.onload = function() {
