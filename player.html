@@ -6,6 +6,25 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="include/styles.css">
     <title>Movie Streaming</title>
+    <style>
+        .iframe-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            background-color: #000; /* Black background for iframe container */
+            border: 1px solid #858585; /* Blue border around the iframe */
+        }
+        .iframe-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none; /* Remove the default border from the iframe */
+        }
+    </style>
 </head>
 <body class="bg-black text-white">
     <!-- Nav Bar Start -->
@@ -18,47 +37,24 @@
     </div>
 
     <div class="container mt-5">
-        <div class="cards-cont">
-            <!-- Card 1: Visible on medium and larger devices -->
-            <div class="card card-1 mb-3 d-none d-md-block" style="max-width: 540px;">
-                <div class="row no-gutters">
-                    <div class="col-md-4">
-                        <img id="poster-md" src="" class="card-img" alt="Movie Poster" style="height: 220px; width: 180px;">
-                    </div>
-                    <div class="col-md-8">
-                        <div class="card-body">
-                            <h5 id="title-md" class="card-title font-weight-bold">Movie Title</h5>
-                            <p id="year-md" class="card-text font-weight-bold">Year</p>
-                            <p class="card-text font-weight-bold">Stars: <small class="txt-data" id="cast-md"></small></p>
-                            <p class="card-text font-weight-bold">Director: <small class="txt-data" id="director-md"></small></p>
-                            <a id="download-md" href="#" target="_blank" class="btn btn-warning">Download</a>
-                        </div>
-                    </div>
-                </div>
+        <div class="card mt-3" style="max-width: 540px;">
+            <div class="row no-gutters">
+              <div class="col-6 col-md-4 pr-1">
+                <img id="poster" src="" class="card-img" alt="Movie Poster">
+              </div>
+              <div class="card-body m-0 p-2 pl-1 col-6 col-md-8">
+                  <h5 id="title" class="card-title">Movie Title</h5>
+                  <p id="year" class="card-text">Year</p>
+                  <p class="card-text">Stars:<small class="textmuted" id="cast"></small></p>
+                  <p class="card-text">Director:<small class="textmuted" id="director"></small></p>
+                  <a id="download" href="#" target="_blank" class="btn btn-warning">Download</a>
+              </div>
             </div>
-
-            <!-- Card 2: Visible on small devices -->
-            <div class="card card-2 mb-3 d-block d-md-none">
-                <div class="row no-gutters">
-                    <div class="col-2 col-md-4 mr-5 mt-4">
-                        <img id="poster-sm" src="" class="card-img" alt="Movie Poster" style="height: 190px; width: 120px;">
-                    </div>
-                    <div class="col-8 col-md-8 ml-2">
-                        <div class="card-body">
-                            <h5 id="title-sm" class="card-title">Movie Title</h5>
-                            <p id="year-sm" class="card-text">Year</p>
-                            <p class="card-text">Stars: <small class="txt-data" id="cast-sm"></small></p>
-                            <p class="card-text">Director: <small class="txt-data" id="director-sm"></small></p>
-                            <a id="download-sm" href="#" target="_blank" class="btn btn-warning">Download</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+          </div>
 
         <!-- Responsive Video Card -->
         <div class="video-card mt-3 mb-5">
-            <div class="embed-responsive embed-responsive-16by9">
+            <div class="iframe-container embed-responsive embed-responsive-16by9">
                 <iframe 
                 id="video-frame"
                 class="embed-responsive-item"
