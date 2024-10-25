@@ -18,18 +18,12 @@ document.addEventListener("DOMContentLoaded", () => {
             const moviesContainer = document.getElementById('movies');
             data.forEach(movie => {
                 const movieCard = `
-                    <div class="col-4 col-sm-3 col-md-3 col-lg-2">
+                        
+                    <div class="card col-5 col-sm-5 col-md-3 col-lg-2 col-xl-2" style="width: 11rem;">
                         <a href="player.html?title=${encodeURIComponent(movie.title)}" class="text-decoration-none text-reset">
-                            <div class="card" style="width: 10rem; height: 17rem;">
-                                <div class="d-flex align-items-center">
-                                    <div class="text-center bg-svdm">
-                                        <span class="text-black">svdm</span><span class="text-red">.in</span>
-                                        <img src="${movie.poster}" alt="${movie.title}" style="height: 10rem; width: 10rem;">
-                                    </div>
-                                </div>
-                                <div class="text-card">
-                                    <p class="card-text">${movie.title} <br> <span class="text-orange">${movie.year}</span></p>
-                                </div>
+                                <img src="${movie.poster}" class="card-img-top" alt="${movie.title}">
+                            <div class="card-body">
+                                <p class="card-text">${movie.title} <br> <span class="text-orange">${movie.year}</span></p>
                             </div>
                         </a>
                     </div>
