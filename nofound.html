@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - Page Not Found</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .bg-body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f8f9fa;
+            color: #343a40;
+            text-align: center;
+        }
+        h1 {
+            font-size: 4rem;
+        }
+        .btn {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Nav Bar Start -->
+    <div id="navbar-placeholder"></div>
+    <!-- Nav Bar End-->
+
+    <div class=" bg-body">
+        <h1>404</h1>
+        <h2>Oops! Page Not Found.</h2>
+        <p>It seems we can't find the page you're looking for.</p>
+        <a href="index.html" class="btn btn-primary">Go to Home</a>
+    </div>
+    
+    <!-- Footer Start -->
+    <div id="footer-placeholder"></div>
+    <!-- Footer End -->
+    
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js"></script>
+    <script>
+        $(function() {
+            // Load the navbar and footer for the index.html
+            $("#navbar-placeholder").load("files/navbar.html");
+            $("#footer-placeholder").load("files/footer.html");
+        });
+    </script>
+</body>
+</html>
